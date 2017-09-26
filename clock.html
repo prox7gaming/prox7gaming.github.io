@@ -1,31 +1,38 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8">
-    <title>A simple clock</title>
+  <meta charset="UTF-8">
+  <title>A simple clock</title>
+
 </head>
-<body>
-	<span id="setScheduleDateMainD"></span><br>
-    <span id="setScheduleDateMainT"></span>
-    <script src="https://cdn.jsdelivr.net/combine/npm/jquery,npm/moment,npm/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
-    <script>
-    /**
-     * Get date & time.
-     * -------------------------------------------------------------------------
-     */
-    function extJS_getTime() {
-        let getScheduleDateMainT = moment().tz('Europe/Paris').format('HH:mm:ss');
-		let getScheduleDateMainD = moment().tz('Europe/Paris').format('DD/MM/YYYY');
-        let $elScheduleDateMainT = $('#setScheduleDateMainT');
-		let $elScheduleDateMainD = $('#setScheduleDateMainD');
-        let updateTime = 1000;
-        $elScheduleDateMainT.text(getScheduleDateMainT);
-		$elScheduleDateMainD.text(getScheduleDateMainD);
-        setTimeout(extJS_getTime, updateTime);
-    }
-    jQuery(document).ready(function(){
-        extJS_getTime();
-    });
-    </script>
+
+<body translate="no" >
+  <div id="output"></div>
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js'></script>
+  <script>
+// https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+var urlParams;
+(function () {
+    var match,
+        pl     = /\+/g,  // Regex for replacing addition symbol with a space
+        search = /([^&=]+)=?([^&]*)/g,
+        decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+        query  = window.location.search.substring(1);
+    urlParams = {};
+    while (match = search.exec(query))
+       urlParams[decode(match[1])] = decode(match[2]);
+})();
+var output = document.getElementById("output");
+if (urlParams["style"]) output.setAttribute("style", urlParams["style"]);
+if (urlParams["bodyStyle"]) document.body.setAttribute("style", urlParams["bodyStyle"]);
+var c;
+setInterval(
+c = function() {
+    output.innerText = moment().format();
+}, 1000);
+c();
+  </script>
 </body>
 </html>
