@@ -5,24 +5,24 @@
     <title>A simple clock</title>
 </head>
 <body>
-    <span id="setScheduleDateMain"></span>
+	<span id="setScheduleDateMainD"></span><br>
+    <span id="setScheduleDateMainT"></span>
     <script src="https://cdn.jsdelivr.net/combine/npm/jquery,npm/moment,npm/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
     <script>
     /**
      * Get date & time.
      * -------------------------------------------------------------------------
      */
-
     function extJS_getTime() {
-        let getScheduleDateMain = moment().tz('Europe/Paris').format('HH:mm:ss');
-        let $elScheduleDateMain = $('#setScheduleDateMain');
+        let getScheduleDateMainT = moment().tz('Europe/Paris').format('HH:mm:ss');
+		let getScheduleDateMainD = moment().tz('Europe/Paris').format('DD/MM/YYYY');
+        let $elScheduleDateMainT = $('#setScheduleDateMainT');
+		let $elScheduleDateMainD = $('#setScheduleDateMainD');
         let updateTime = 1000;
-
-        $elScheduleDateMain.text(getScheduleDateMain);
-
+        $elScheduleDateMainT.text(getScheduleDateMainT);
+		$elScheduleDateMainD.text(getScheduleDateMainD);
         setTimeout(extJS_getTime, updateTime);
     }
-
     jQuery(document).ready(function(){
         extJS_getTime();
     });
