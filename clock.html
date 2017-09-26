@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>A simple clock</title>
+	<meta charset="UTF-8">
+	<title>A simple clock</title>
 </head>
 <body translate="no" >
-  <div id="output"></div>
-  <script src='https://momentjs.com/downloads/moment.js'></script>
-  <script src='https://momentjs.com/downloads/moment-timezone.js'></script>
-  <script>
+	<div id="outputD"></div>
+	<div id="outputT"></div>
+	<script src='https://momentjs.com/downloads/moment.js'></script>
+	<script src='https://momentjs.com/downloads/moment-timezone.js'></script>
+	<script>
 var urlParams;
 (function () {
     var match,
@@ -20,15 +21,19 @@ var urlParams;
     while (match = search.exec(query))
        urlParams[decode(match[1])] = decode(match[2]);
 })();
-var output = document.getElementById("output");
-if (urlParams["style"]) output.setAttribute("style", urlParams["style"]);
+var outputT = document.getElementById("outputT");
+if (urlParams["style"]) outputT.setAttribute("style", urlParams["style"]);
+if (urlParams["bodyStyle"]) document.body.setAttribute("style", urlParams["bodyStyle"]);
+var outputD = document.getElementById("outputD");
+if (urlParams["style"]) outputD.setAttribute("style", urlParams["style"]);
 if (urlParams["bodyStyle"]) document.body.setAttribute("style", urlParams["bodyStyle"]);
 var c;
 setInterval(
 c = function() {
-    output.innerText = moment().format();
+    outputT.innerText = moment().tz('Europe/Moscow').format('HH:mm:ss');
+	outputD.innerText = moment().tz('Europe/Moscow').format('DD/MM/YYYY');
 }, 1000);
 c();
-  </script>
+	</script>
 </body>
 </html>
