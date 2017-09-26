@@ -1,38 +1,35 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <meta charset="UTF-8">
-  <title>A simple clock</title>
-
+    <meta charset="utf-8">
+    <title>A simple clock</title>
 </head>
+<body>
+    <p>Московское время: <span id="setScheduleDateMain"></span></p>
+    <p>Локальное время: <span id="setScheduleDateLocal"></span></p>
+    <script src="https://cdn.jsdelivr.net/combine/npm/jquery,npm/moment,npm/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
+    <script>
+    /**
+     * Get date & time.
+     * -------------------------------------------------------------------------
+     */
 
-<body translate="no" >
-  <div id="output"></div>
+    function extJS_getTime() {
+        let getScheduleDateMain = moment().tz('Europe/Moscow').format('DD/MM/YYYY HH:mm:ss');
+        let getScheduleDateLocal = moment().format('DD/MM/YYYY HH:mm:ss');
+        let $elScheduleDateMain = $('#setScheduleDateMain');
+        let $elScheduleDateLocal = $('#setScheduleDateLocal');
+        let updateTime = 1000;
 
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js'></script>
-  <script>
-// https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
-var urlParams;
-(function () {
-    var match,
-        pl     = /\+/g,  // Regex for replacing addition symbol with a space
-        search = /([^&=]+)=?([^&]*)/g,
-        decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
-        query  = window.location.search.substring(1);
-    urlParams = {};
-    while (match = search.exec(query))
-       urlParams[decode(match[1])] = decode(match[2]);
-})();
-var output = document.getElementById("output");
-if (urlParams["style"]) output.setAttribute("style", urlParams["style"]);
-if (urlParams["bodyStyle"]) document.body.setAttribute("style", urlParams["bodyStyle"]);
-var c;
-setInterval(
-c = function() {
-    output.innerText = moment().format();
-}, 1000);
-c();
-  </script>
+        $elScheduleDateMain.text(getScheduleDateMain);
+        $elScheduleDateLocal.text(getScheduleDateLocal);
+
+        setTimeout(extJS_getTime, updateTime);
+    }
+
+    jQuery(document).ready(function(){
+        extJS_getTime();
+    });
+    </script>
 </body>
 </html>
