@@ -5,8 +5,7 @@
     <title>A simple clock</title>
 </head>
 <body>
-    <p>Московское время: <span id="setScheduleDateMain"></span></p>
-    <p>Локальное время: <span id="setScheduleDateLocal"></span></p>
+    <span id="setScheduleDateMain"></span>
     <script src="https://cdn.jsdelivr.net/combine/npm/jquery,npm/moment,npm/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
     <script>
     /**
@@ -15,14 +14,11 @@
      */
 
     function extJS_getTime() {
-        let getScheduleDateMain = moment().tz('Europe/Moscow').format('DD/MM/YYYY HH:mm:ss');
-        let getScheduleDateLocal = moment().format('DD/MM/YYYY HH:mm:ss');
+        let getScheduleDateMain = moment().tz('Europe/Paris').format('DD/MM/YYYY HH:mm:ss');
         let $elScheduleDateMain = $('#setScheduleDateMain');
-        let $elScheduleDateLocal = $('#setScheduleDateLocal');
         let updateTime = 1000;
 
         $elScheduleDateMain.text(getScheduleDateMain);
-        $elScheduleDateLocal.text(getScheduleDateLocal);
 
         setTimeout(extJS_getTime, updateTime);
     }
