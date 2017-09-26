@@ -29,8 +29,8 @@ if (urlParams["bodyStyle"]) document.body.setAttribute("style", urlParams["bodyS
 var c;
 setInterval(
 c = function() {
-    outputT.innerText = moment().tz('Europe/Moscow').format('HH:mm:ss');
-	outputD.innerText = moment().tz('Europe/Moscow').format('DD/MM/YYYY');
+    outputT.innerText = moment().tz('Europe/Paris').format('HH:mm:ss');
+    outputD.innerText = moment().tz('Europe/Paris').format('DD/MM/YYYY');
 }, 1000);
 c();
   </script>
