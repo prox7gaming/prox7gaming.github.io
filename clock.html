@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>A simple clock</title>
+  <meta charset="UTF-8">
+  <title>A simple clock</title>
 </head>
 <body translate="no" >
-	<div id="outputD"></div>
-	<div id="outputT"></div>
-	<script src='https://momentjs.com/downloads/moment.js'></script>
-	<script src='https://momentjs.com/downloads/moment-timezone.js'></script>
-	<script>
+  <div id="outputD"></div>
+  <div id="outputT"></div>
+  <script src='https://momentjs.com/downloads/moment.js'></script>
+  <script src='https://momentjs.com/downloads/moment-timezone.js'></script>
+  <script>
 var urlParams;
 (function () {
     var match,
@@ -34,6 +34,6 @@ c = function() {
 	outputD.innerText = moment().tz('Europe/Moscow').format('DD/MM/YYYY');
 }, 1000);
 c();
-	</script>
+  </script>
 </body>
 </html>
